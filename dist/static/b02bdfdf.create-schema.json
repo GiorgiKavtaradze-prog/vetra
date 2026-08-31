@@ -1,0 +1,815 @@
+[
+  {
+    "initialValue": {
+      "version": "1"
+    },
+    "fields": [
+      {
+        "hidden": true,
+        "name": "version",
+        "type": "string"
+      },
+      {
+        "placeholder": "My Sanity Context",
+        "description": "The name of this Sanity Context",
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "options": {
+          "source": "name"
+        },
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "description": "The slug of this context. This is used to identify it in the MCP URL.",
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ]
+          }
+        ],
+        "description": "Control what content AI agents can access. Leave empty for full access, or pick specific document types. Use the GROQ tab for advanced filters.",
+        "name": "groqFilter",
+        "type": "string",
+        "title": "Content filter"
+      },
+      {
+        "description": "Custom instructions for how AI agents should work with your content.",
+        "name": "instructions",
+        "type": "text"
+      }
+    ],
+    "name": "sanity.agentContext",
+    "type": "document",
+    "title": "Sanity Context"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "description": "Identifier for the agent that handled this conversation",
+        "name": "agentId",
+        "type": "string",
+        "title": "Agent ID"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "description": "Unique identifier for this conversation thread",
+        "name": "threadId",
+        "type": "string",
+        "title": "Thread ID"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "options": {
+                  "list": [
+                    {
+                      "title": "User",
+                      "value": "user"
+                    },
+                    {
+                      "title": "Assistant",
+                      "value": "assistant"
+                    },
+                    {
+                      "title": "System",
+                      "value": "system"
+                    },
+                    {
+                      "title": "Tool",
+                      "value": "tool"
+                    }
+                  ]
+                },
+                "validation": [
+                  {
+                    "level": "error",
+                    "rules": [
+                      {
+                        "flag": "valid",
+                        "constraint": [
+                          "user",
+                          "assistant",
+                          "system",
+                          "tool"
+                        ]
+                      },
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ]
+                  }
+                ],
+                "name": "role",
+                "type": "string"
+              },
+              {
+                "name": "content",
+                "type": "text"
+              },
+              {
+                "description": "For tool messages: the name of the tool",
+                "name": "toolName",
+                "type": "string"
+              },
+              {
+                "options": {
+                  "list": [
+                    {
+                      "title": "Call",
+                      "value": "call"
+                    },
+                    {
+                      "title": "Result",
+                      "value": "result"
+                    }
+                  ]
+                },
+                "description": "For tool messages: whether this is a call or result",
+                "name": "toolType",
+                "type": "string"
+              }
+            ],
+            "type": "object",
+            "name": "conversationMessage",
+            "title": "Message"
+          }
+        ],
+        "name": "messages",
+        "type": "array"
+      },
+      {
+        "description": "When the conversation started",
+        "name": "startedAt",
+        "type": "datetime"
+      },
+      {
+        "description": "When the conversation messages were last updated",
+        "name": "messagesUpdatedAt",
+        "type": "datetime"
+      },
+      {
+        "description": "The AI model provider (e.g. \"openai\", \"anthropic\")",
+        "name": "modelProvider",
+        "type": "string"
+      },
+      {
+        "description": "The AI model identifier (e.g. \"gpt-4o\", \"claude-sonnet-4-20250514\")",
+        "name": "modelId",
+        "type": "string",
+        "title": "Model ID"
+      },
+      {
+        "description": "Aggregated token usage for the conversation",
+        "fields": [
+          {
+            "name": "inputTokens",
+            "type": "number"
+          },
+          {
+            "name": "outputTokens",
+            "type": "number"
+          },
+          {
+            "name": "totalTokens",
+            "type": "number"
+          }
+        ],
+        "name": "tokenUsage",
+        "type": "object"
+      },
+      {
+        "description": "Standardized metrics from automated classification",
+        "fields": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "min",
+                    "constraint": 1
+                  },
+                  {
+                    "flag": "max",
+                    "constraint": 10
+                  }
+                ]
+              }
+            ],
+            "description": "How successfully the agent addressed user needs (1-10)",
+            "name": "successScore",
+            "type": "number"
+          },
+          {
+            "options": {
+              "list": [
+                {
+                  "title": "Positive",
+                  "value": "positive"
+                },
+                {
+                  "title": "Neutral",
+                  "value": "neutral"
+                },
+                {
+                  "title": "Negative",
+                  "value": "negative"
+                }
+              ]
+            },
+            "name": "sentiment",
+            "type": "string"
+          },
+          {
+            "description": "Topics where the agent lacked information in its knowledge base",
+            "of": [
+              {
+                "type": "string"
+              }
+            ],
+            "name": "contentGaps",
+            "type": "array"
+          }
+        ],
+        "name": "coreMetrics",
+        "type": "object"
+      },
+      {
+        "description": "When this conversation was classified",
+        "name": "classifiedAt",
+        "type": "datetime"
+      },
+      {
+        "description": "Error message if classification failed",
+        "name": "classificationError",
+        "type": "string"
+      }
+    ],
+    "name": "sanity.agentContextConversation",
+    "type": "document",
+    "title": "Agent Conversation"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "orgId",
+        "type": "string",
+        "title": "Agency (Clerk org id)"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "name": "website",
+        "type": "url"
+      },
+      {
+        "name": "industry",
+        "type": "string"
+      },
+      {
+        "rows": 4,
+        "name": "notes",
+        "type": "text"
+      }
+    ],
+    "name": "company",
+    "type": "document",
+    "title": "Client Company"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "orgId",
+        "type": "string",
+        "title": "Agency (Clerk org id)"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "rows": 8,
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "options": {
+          "list": [
+            "junior",
+            "mid",
+            "senior",
+            "staff",
+            "lead",
+            "executive"
+          ]
+        },
+        "name": "seniority",
+        "type": "string"
+      },
+      {
+        "name": "salaryRange",
+        "type": "string",
+        "title": "Salary range"
+      },
+      {
+        "options": {
+          "list": [
+            "open",
+            "closed"
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "open",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "open",
+                  "closed"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "status",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "to": [
+          {
+            "type": "company"
+          }
+        ],
+        "name": "company",
+        "type": "reference",
+        "title": "Client company"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "createdAt",
+        "type": "datetime",
+        "title": "Created at"
+      }
+    ],
+    "name": "job",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "orgId",
+        "type": "string",
+        "title": "Agency (Clerk org id)"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "name": "email",
+        "type": "string"
+      },
+      {
+        "description": "One-line summary, e.g. 'Senior React engineer, fintech'",
+        "name": "headline",
+        "type": "string"
+      },
+      {
+        "options": {
+          "layout": "tags"
+        },
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "skills",
+        "type": "array"
+      },
+      {
+        "rows": 20,
+        "description": "The candidate's full structured CV as text — searched semantically by the AI agent",
+        "name": "cvText",
+        "type": "text",
+        "title": "CV / Profile"
+      },
+      {
+        "options": {
+          "list": [
+            "referral",
+            "linkedin",
+            "job-board",
+            "outreach",
+            "other"
+          ]
+        },
+        "name": "source",
+        "type": "string"
+      },
+      {
+        "initialValue": false,
+        "name": "archived",
+        "type": "boolean"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "createdAt",
+        "type": "datetime",
+        "title": "Added at"
+      }
+    ],
+    "name": "candidate",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "orgId",
+        "type": "string",
+        "title": "Agency (Clerk org id)"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "to": [
+          {
+            "type": "candidate"
+          }
+        ],
+        "name": "candidate",
+        "type": "reference"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "to": [
+          {
+            "type": "job"
+          }
+        ],
+        "name": "job",
+        "type": "reference"
+      },
+      {
+        "options": {
+          "list": [
+            "applied",
+            "screening",
+            "interviewing",
+            "offer",
+            "hired",
+            "rejected"
+          ]
+        },
+        "initialValue": "applied",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "applied",
+                  "screening",
+                  "interviewing",
+                  "offer",
+                  "hired",
+                  "rejected"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "stage",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "appliedAt",
+        "type": "datetime",
+        "title": "Applied at"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "stageUpdatedAt",
+        "type": "datetime",
+        "title": "Stage last updated"
+      }
+    ],
+    "name": "application",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "orgId",
+        "type": "string",
+        "title": "Agency (Clerk org id)"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "to": [
+          {
+            "type": "application"
+          }
+        ],
+        "name": "application",
+        "type": "reference"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "description": "e.g. 'Recruiter screen', 'Technical interview', 'Final'",
+        "name": "roundName",
+        "type": "string",
+        "title": "Round"
+      },
+      {
+        "name": "scheduledAt",
+        "type": "datetime",
+        "title": "Scheduled at"
+      },
+      {
+        "name": "interviewer",
+        "type": "string"
+      },
+      {
+        "rows": 10,
+        "description": "The interviewer's written debrief — searched semantically by the AI agent",
+        "name": "feedbackText",
+        "type": "text",
+        "title": "Feedback / debrief"
+      },
+      {
+        "options": {
+          "list": [
+            "pending",
+            "pass",
+            "fail"
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "pending",
+        "name": "outcome",
+        "type": "string"
+      }
+    ],
+    "name": "interview",
+    "type": "document"
+  }
+]

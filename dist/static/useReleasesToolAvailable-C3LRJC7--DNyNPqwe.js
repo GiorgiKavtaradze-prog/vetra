@@ -1,0 +1,1 @@
+import{t as e}from"./compiler-runtime-Bm83wF1q.js";import{d as t}from"./dist-C8c6HYcL.js";import{t as n}from"./plugin-Couy7wFS-BxsxBnDr.js";var r=e();function i(){let e=(0,r.c)(2),n=t(),i;return e[0]===n.tools?i=e[1]:(i=n.tools.some(a),e[0]=n.tools,e[1]=i),i}function a(e){let{name:t}=e;return t===n}export{i as t};

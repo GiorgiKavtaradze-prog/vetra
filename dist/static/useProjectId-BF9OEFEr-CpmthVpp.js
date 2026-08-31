@@ -1,0 +1,1 @@
+import{u as e}from"./dist-C8c6HYcL.js";function t(){return e().projectId}export{t};

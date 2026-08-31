@@ -1,0 +1,21 @@
+{
+  "createdAt": "2026-08-26T10:10:42.827Z",
+  "studioVersion": "6.11.0",
+  "version": 3,
+  "workspaces": [
+    {
+      "basePath": "/studio",
+      "dataset": "production",
+      "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\"><rect width=\"32\" height=\"32\" rx=\"2\" fill=\"#ccb1fc\"></rect><text x=\"50%\" y=\"50%\" text-anchor=\"middle\" alignment-baseline=\"middle\" fill=\"hsla(262, 93%, 44%, 1)\" style=\"font-family:Inter, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, &quot;Liberation Sans&quot;, Helvetica, Arial, system-ui, sans-serif;font-weight:500;font-size:13px;transform:translateY(1px)\">V</text></svg>",
+      "mediaLibrary": {
+        "enabled": false,
+        "__internal": {}
+      },
+      "name": "vetra",
+      "projectId": "ppdk29dz",
+      "schema": "b02bdfdf.create-schema.json",
+      "title": "Vetra",
+      "tools": "f5bcee46.create-tools.json"
+    }
+  ]
+}

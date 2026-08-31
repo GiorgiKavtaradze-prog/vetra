@@ -1,0 +1,523 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: "Geist", "Geist Fallback", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+/* ── Vetra design language ──────────────────────────────────────
+   Color means something: ink for actions, the stage ramp for
+   pipeline status, and violet EXCLUSIVELY for AI moments. */
+:root {
+  --background: oklch(0.985 0.002 95);
+  --foreground: oklch(0.24 0.012 60);
+  --card: oklch(1 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.24 0.012 60);
+  --border: oklch(0.925 0.006 80);
+  --input: oklch(0.902 0.006 80);
+  --muted: oklch(0.963 0.004 90);
+  --muted-foreground: oklch(0.5 0.014 60);
+  --secondary: oklch(0.963 0.004 90);
+  --secondary-foreground: oklch(0.24 0.012 60);
+  --accent: oklch(0.955 0.004 90);
+  --accent-foreground: oklch(0.24 0.012 60);
+  --primary: oklch(0.25 0.014 60);
+  --primary-foreground: oklch(0.985 0.002 95);
+  --ring: oklch(0.65 0.012 60);
+  --radius: 0.5rem;
+  --ai: oklch(0.5 0.17 285);
+  --ai-foreground: oklch(0.985 0.005 285);
+  --ai-soft: oklch(0.958 0.028 290);
+  --stage-applied: #64748b;
+  --stage-screening: #3b82f6;
+  --stage-interviewing: #7c5cd6;
+  --stage-offer: #d97706;
+  --stage-hired: #16a34a;
+  --stage-rejected: #e11d48;
+}
+
+.dark {
+  --background: oklch(0.17 0.008 60);
+  --foreground: oklch(0.94 0.004 90);
+  --card: oklch(0.215 0.009 60);
+  --popover: oklch(0.215 0.009 60);
+  --popover-foreground: oklch(0.94 0.004 90);
+  --border: oklch(0.295 0.01 60);
+  --input: oklch(0.32 0.01 60);
+  --muted: oklch(0.255 0.009 60);
+  --muted-foreground: oklch(0.67 0.01 60);
+  --secondary: oklch(0.255 0.009 60);
+  --secondary-foreground: oklch(0.94 0.004 90);
+  --accent: oklch(0.27 0.009 60);
+  --accent-foreground: oklch(0.94 0.004 90);
+  --primary: oklch(0.94 0.004 90);
+  --primary-foreground: oklch(0.2 0.009 60);
+  --ring: oklch(0.45 0.012 60);
+  --ai: oklch(0.68 0.15 288);
+  --ai-foreground: oklch(0.17 0.02 288);
+  --ai-soft: oklch(0.28 0.05 290);
+  --stage-applied: #94a3b8;
+  --stage-screening: #60a5fa;
+  --stage-interviewing: #a78bfa;
+  --stage-offer: #fbbf24;
+  --stage-hired: #4ade80;
+  --stage-rejected: #fb7185;
+}
+
+@theme inline {
+  --color-ai: var(--ai);
+  --color-ai-foreground: var(--ai-foreground);
+  --color-ai-soft: var(--ai-soft);
+  --color-stage-applied: var(--stage-applied);
+  --color-stage-screening: var(--stage-screening);
+  --color-stage-interviewing: var(--stage-interviewing);
+  --color-stage-offer: var(--stage-offer);
+  --color-stage-hired: var(--stage-hired);
+  --color-stage-rejected: var(--stage-rejected);
+  --font-display: var(--font-display);
+  --font-heading: var(--font-display);
+}
+
+/* ── Dashboard: black & white scope ──
+   Overrides the violet AI accent and the colorful stage tones
+   with neutral foreground/grayscale values, so the whole desk
+   matches the monochrome landing page. */
+.bw {
+  --ai: var(--foreground);
+  --ai-foreground: var(--background);
+  --ai-soft: var(--muted);
+  --stage-applied: oklch(0.62 0 0);
+  --stage-screening: oklch(0.55 0 0);
+  --stage-interviewing: oklch(0.48 0 0);
+  --stage-offer: oklch(0.4 0 0);
+  --stage-hired: oklch(0.45 0 0);
+  --stage-rejected: oklch(0.5 0 0);
+}
+.dark .bw,
+.bw .dark {
+  --ai: var(--foreground);
+  --ai-foreground: var(--background);
+  --ai-soft: var(--muted);
+  --stage-applied: oklch(0.55 0 0);
+  --stage-screening: oklch(0.62 0 0);
+  --stage-interviewing: oklch(0.68 0 0);
+  --stage-offer: oklch(0.72 0 0);
+  --stage-hired: oklch(0.68 0 0);
+  --stage-rejected: oklch(0.6 0 0);
+}
+
+body {
+  font-family: var(--font-sans), system-ui, sans-serif;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ── Landing motion + texture ── */
+@keyframes vetra-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: vetra-marquee 36s linear infinite;
+}
+@keyframes vetra-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.fade-up {
+  animation: vetra-fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.fade-up-2 {
+  animation-delay: 0.12s;
+}
+.fade-up-3 {
+  animation-delay: 0.24s;
+}
+.fade-up-4 {
+  animation-delay: 0.38s;
+}
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
+  .fade-up,
+  .fade-up-2,
+  .fade-up-3,
+  .fade-up-4 {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+/* ── Clerk: monochrome theme ── */
+[class*="cl-internal-"],
+.cl-rootBox,
+.cl-cardBox {
+  --clerk-color-primary: var(--foreground);
+  --clerk-color-primary-hover: var(--foreground);
+  --clerk-color-background: var(--background);
+  --clerk-color-text: var(--foreground);
+  --clerk-color-text-secondary: var(--muted-foreground);
+  --clerk-color-text-on-primary: var(--background);
+  --clerk-color-border: var(--border);
+  --clerk-color-danger: var(--destructive);
+  --clerk-color-success: var(--foreground);
+  --clerk-color-warning: var(--foreground);
+  --clerk-color-input-background: var(--background);
+  --clerk-color-input-text: var(--foreground);
+  --clerk-color-input-border: var(--border);
+  --clerk-color-input-border-focus: var(--foreground);
+  --clerk-color-modal-overlay: oklch(0 0 0 / 0.5);
+  --clerk-color-shimmer: var(--foreground);
+  --clerk-font-family: var(--font-sans), system-ui, sans-serif;
+  --clerk-font-weight: 500;
+  --clerk-border-radius: 0.625rem;
+  --clerk-button-font-weight: 500;
+  --clerk-button-border-radius: 0.625rem;
+  --clerk-input-border-radius: 0.625rem;
+  --clerk-card-border-radius: 0.75rem;
+  --clerk-card-border: 1px solid var(--border);
+  --clerk-card-box-shadow:
+    0 1px 3px oklch(0 0 0 / 0.04), 0 1px 2px oklch(0 0 0 / 0.06);
+  --clerk-popover-box-shadow: 0 4px 16px oklch(0 0 0 / 0.08);
+}
+.cl-formButtonPrimary {
+  background: var(--foreground) !important;
+  color: var(--background) !important;
+  border: 1px solid var(--foreground) !important;
+  box-shadow: none !important;
+}
+.cl-formButtonPrimary:hover {
+  background: transparent !important;
+  color: var(--foreground) !important;
+}
+.cl-formButtonReset,
+.cl-formFieldAction {
+  color: var(--foreground) !important;
+}
+.cl-formFieldInput {
+  background: var(--background) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--foreground) !important;
+  box-shadow: none !important;
+}
+.cl-formFieldInput:focus {
+  border-color: var(--foreground) !important;
+  box-shadow: none !important;
+}
+.cl-formFieldInput::placeholder {
+  color: var(--muted-foreground) !important;
+}
+.cl-socialButtonsBlockButton {
+  border: 1px solid var(--border) !important;
+  background: var(--background) !important;
+  color: var(--foreground) !important;
+  box-shadow: none !important;
+}
+.cl-socialButtonsBlockButton:hover {
+  border-color: var(--foreground) !important;
+}
+.cl-dividerLine {
+  background: var(--border) !important;
+}
+.cl-dividerText {
+  color: var(--muted-foreground) !important;
+}
+.cl-footerActionText {
+  color: var(--muted-foreground) !important;
+}
+.cl-footerActionLink {
+  color: var(--foreground) !important;
+}
+.cl-footerActionLink:hover {
+  text-decoration: underline !important;
+}
+.cl-avatarBox {
+  border: 1px solid var(--border) !important;
+}
+.cl-userButtonPopoverCard,
+.cl-organizationSwitcherPopoverCard {
+  border: 1px solid var(--border) !important;
+  box-shadow: var(--clerk-popover-box-shadow) !important;
+}
+.cl-userButtonPopoverActionButton {
+  color: var(--foreground) !important;
+}
+.cl-userButtonPopoverActionButton:hover {
+  background: var(--muted) !important;
+}
+.cl-badge {
+  background: var(--foreground) !important;
+  color: var(--background) !important;
+}
+.cl-alertText {
+  color: var(--destructive) !important;
+}
+.cl-loadingSpinner {
+  color: var(--foreground) !important;
+}
+.cl-headerTitle,
+.cl-headerSubtitle,
+.cl-modalCloseButton {
+  color: var(--foreground) !important;
+}
+.cl-modalCloseButton:hover {
+  background: var(--muted) !important;
+}
+/* ── Clerk: bright text in dark mode ── */
+.dark [class*="cl-internal-"],
+.dark .cl-rootBox,
+.dark .cl-cardBox {
+  --clerk-color-text: oklch(0.95 0.004 90);
+  --clerk-color-text-secondary: oklch(0.8 0.004 90);
+  --clerk-color-border: oklch(0.4 0.01 60);
+  --clerk-color-input-border: oklch(0.4 0.01 60);
+  --clerk-color-modal-overlay: oklch(0 0 0 / 0.65);
+}
+.dark .cl-formFieldInput::placeholder {
+  color: oklch(0.75 0.004 90) !important;
+}
+.dark .cl-dividerLine {
+  background: oklch(0.4 0.01 60) !important;
+}
+.dark .cl-dividerText {
+  color: oklch(0.8 0.004 90) !important;
+}
+.dark .cl-footerActionText {
+  color: oklch(0.8 0.004 90) !important;
+}
+.dark .cl-userButtonPopoverActionButton:hover {
+  background: oklch(0.3 0.009 60) !important;
+}
+.dark .cl-modalCloseButton:hover {
+  background: oklch(0.3 0.009 60) !important;
+}
+
+/* aurora drift */
+@keyframes vetra-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-4%, 3%, 0) scale(1.08);
+  }
+}
+.animate-drift {
+  animation: vetra-drift 14s ease-in-out infinite;
+}
+.animate-drift-slow {
+  animation: vetra-drift 22s ease-in-out infinite reverse;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-drift,
+  .animate-drift-slow {
+    animation: none;
+  }
+}
+
+/* floating proof chips */
+@keyframes vetra-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+.animate-float {
+  animation: vetra-float 6s ease-in-out infinite;
+}
+.animate-float-delay {
+  animation: vetra-float 7s ease-in-out 1.2s infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-float-delay {
+    animation: none;
+  }
+}
+
+/* Ask Vetra dock (Ask Widget design) */
+@keyframes vetra-sweep {
+  0% {
+    opacity: 0;
+    transform: translateX(-60%);
+  }
+  40% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(60%);
+  }
+}
+.animate-vetra-sweep {
+  animation: vetra-sweep 1.8s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-vetra-sweep {
+    animation: none;
+  }
+}
+
+/* Ask Vetra expanded: the dock becomes a right sidebar and the app shifts in */
+[data-slot="sidebar-inset"] {
+  transition: margin-right 300ms ease;
+}
+@media (min-width: 768px) {
+  body[data-vetra-expanded] [data-slot="sidebar-inset"] {
+    margin-right: 428px;
+  }
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}

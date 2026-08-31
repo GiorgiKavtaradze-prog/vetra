@@ -1,0 +1,1 @@
+import{p as e}from"./Observable-J1YNseAw.js";import{i as t,n}from"./OperatorSubscriber-lwIDfh2n.js";var r=e(function(e){return function(){e(this),this.name=`EmptyError`,this.message=`no elements in sequence`}});function i(e,r){return t(function(t,i){var a=0;t.subscribe(n(i,function(t){i.next(e.call(r,t,a++))}))})}export{r as n,i as t};

@@ -1,0 +1,1 @@
+function e(e){return e}function t(e){return e}function n(e){return!(`then`in e.resources&&typeof e.resources.then==`function`)}function r(e,t){return t}export{n as i,e as n,r,t};

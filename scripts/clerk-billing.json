@@ -1,0 +1,65 @@
+{
+  "billing": {
+    "features": {
+      "ai_agent": {
+        "name": "AI Talent Agent",
+        "description": "Chat with an AI agent that searches your candidates, jobs and interview feedback",
+        "publicly_visible": true
+      },
+      "unlimited_jobs": {
+        "name": "Unlimited jobs",
+        "description": "Post unlimited open roles",
+        "publicly_visible": true
+      },
+      "unlimited_candidates": {
+        "name": "Unlimited candidates",
+        "description": "Grow your talent pool without limits",
+        "publicly_visible": true
+      }
+    },
+    "free_trial_requires_payment_method": true,
+    "organization_enabled": true,
+    "plans": {
+      "free_org": {
+        "amount": 0,
+        "annual_monthly_amount": 0,
+        "currency": "",
+        "description": "Get started: 1 open job, up to 25 candidates",
+        "features": [],
+        "free_trial_days": null,
+        "free_trial_enabled": false,
+        "is_recurring": true,
+        "name": "Free",
+        "payer_type": "org",
+        "publicly_visible": true
+      },
+      "pro": {
+        "amount": 3900,
+        "annual_monthly_amount": 3200,
+        "currency": "USD",
+        "description": "Full ATS with the AI Talent Agent. Up to 5 recruiter seats.",
+        "features": ["ai_agent", "unlimited_jobs", "unlimited_candidates"],
+        "free_trial_days": null,
+        "free_trial_enabled": false,
+        "is_recurring": true,
+        "name": "Pro",
+        "payer_type": "org",
+        "publicly_visible": true
+      },
+      "scale": {
+        "amount": 9900,
+        "annual_monthly_amount": 8200,
+        "currency": "USD",
+        "description": "Everything in Pro for bigger agencies. Up to 20 recruiter seats.",
+        "features": ["ai_agent", "unlimited_jobs", "unlimited_candidates"],
+        "free_trial_days": null,
+        "free_trial_enabled": false,
+        "is_recurring": true,
+        "name": "Scale",
+        "payer_type": "org",
+        "publicly_visible": true
+      }
+    },
+    "user_enabled": false
+  }
+}
