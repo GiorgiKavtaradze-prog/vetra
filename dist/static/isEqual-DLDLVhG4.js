@@ -1,1 +1,5 @@
-import{t as e}from"./_baseIsEqual-1AOgkwJF.js";function t(t,n){return e(t,n)}export{t};
+import { t as e } from "./_baseIsEqual-1AOgkwJF.js";
+function t(t, n) {
+  return e(t, n);
+}
+export { t };
