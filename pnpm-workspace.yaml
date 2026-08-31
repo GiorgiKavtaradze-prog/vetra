@@ -2,10 +2,12 @@ packages:
   - "."
 
 allowBuilds:
+  bufferutil: set this to true or false
+  core-js: set this to true or false
   esbuild: true
   unrs-resolver: true
+  utf-8-validate: set this to true or false
 
 onlyBuiltDependencies:
   - esbuild
   - unrs-resolver
-
