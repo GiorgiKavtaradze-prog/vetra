@@ -1,85 +1,71 @@
 # MIT License
 
-### Vetra — A Multi-Tenant Recruitment CRM with an AI Copilot
+### Vetra — Multi-Tenant Recruitment CRM & AI Copilot
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-0064b7.svg)](./LICENSE.md)
 [![Author](https://img.shields.io/badge/Author-GiorgiKavtaradze-181717?logo=github&logoColor=white)](https://github.com/GiorgiKavtaradze-prog)
 [![Copyright](https://img.shields.io/badge/%C2%A9-2026-3178c6)](https://github.com/GiorgiKavtaradze-prog)
+[![Next.js](https://img.shields.io/badge/Next.js-15.3+-000000?logo=nextdotjs&logoColor=white)](https://nextjs.org/)
+[![Sanity](https://img.shields.io/badge/Sanity-v3%2Fv6-f03e2f?logo=sanity&logoColor=white)](https://www.sanity.io/)
+[![Clerk](https://img.shields.io/badge/Clerk-Auth%20%26%20Billing-6C47FF?logo=clerk&logoColor=white)](https://clerk.com/)
 
 ---
 
-## 1. The License
+## 1. Official License Text
 
-> Copyright (c) 2026 GiorgiKavtaradze
->
-> Permission is hereby granted, free of charge, to any person obtaining a copy
-> of this software and associated documentation files (the "Software"), to deal
-> in the Software without restriction, including without limitation the rights
-> to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-> copies of the Software, and to permit persons to whom the Software is
-> furnished to do so, subject to the following conditions:
->
-> The above copyright notice and this permission notice shall be included in all
-> copies or substantial portions of the Software.
->
-> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-> IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-> FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-> AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-> LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-> OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-> SOFTWARE.
+```text
+Copyright (c) 2026 GiorgiKavtaradze
 
----
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-## 2. In Plain Language
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-> A friendly summary for humans. The MIT text above is the legally binding part.
-
-| ✅ You are free to                               | 📌 As long as you                                                | ⚠️ Please note                                           |
-| ------------------------------------------------ | ---------------------------------------------------------------- | -------------------------------------------------------- |
-| **Use** the software — commercially or privately | Keep the **copyright notice** in copies or substantial portions  | The software ships **"AS IS"** — no warranty of any kind |
-| **Modify** it and build derivative works         | Keep the **permission notice** in copies or substantial portions | The author accepts **no liability** for any damages      |
-| **Distribute** copies, original or modified      |                                                                  |                                                          |
-| **Sublicense** and/or **sell** copies            |                                                                  |                                                          |
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
 
 ---
 
-## 3. Additional Notices
+## 2. Plain Language Summary
 
-> The following notices are informational and clarify scope. They do **not**
-> alter the terms of the MIT license above.
+> _This summary provides a non-legally-binding overview of the MIT License terms above. The official text in Section 1 remains the sole legally binding agreement._
 
-- **Educational reference.** Vetra is a fictional, educational project — a
-  reference implementation of a multi-tenant Sanity Context + Clerk
-  architecture, not a production-ready product. Audit
-  [`lib/tenant.ts`](lib/tenant.ts) and [`lib/mcp.ts`](lib/mcp.ts) before
-  adapting the tenancy model to real customer data.
-- **Synthetic data.** All agencies, clients, candidates, CVs, interview
-  debriefs and offer figures in the demo dataset are generated fiction. Any
-  resemblance to real persons or companies is coincidental.
-- **Trademarks & no endorsement.** Sanity, Clerk, Anthropic, Claude, Vercel,
-  Next.js, React, Tailwind CSS, pnpm and other third-party names and logos are
-  trademarks of their respective owners. This project is **not affiliated
-  with, sponsored by, or endorsed by** any of them — references serve only to
-  identify the technologies demonstrated.
-- **Secrets & credentials.** Never commit `.env.local`, Sanity tokens, Clerk
-  keys or Anthropic keys. See [`.env.example`](.env.example) for the full
-  variable list.
-- **Billing.** In-app billing runs on Clerk's development checkout — no real
-  money moves.
+| ✅ You are free to                                                      | 📌 As long as you                                                                                 | ⚠️ Please note                                                                       |
+| :---------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------ | :----------------------------------------------------------------------------------- |
+| **Commercial Use** — Use the software commercially or privately         | **Copyright Notice** — Retain the original copyright notice in all copies or substantial portions | **No Warranty** — The software is provided "as is" without any guarantee or warranty |
+| **Modification** — Modify, adapt, or create derivative works            | **License Included** — Retain the full MIT license text in all distributions                      | **No Liability** — The author and contributors are not liable for claims or damages  |
+| **Distribution** — Distribute original or modified versions             |                                                                                                   |                                                                                      |
+| **Sublicensing** — Sublicense, sell, or package with closed-source code |                                                                                                   |                                                                                      |
 
 ---
 
-## 4. Attribution
+## 3. Architecture & Operational Disclaimers
 
-If you fork, remix or build upon Vetra, a link back to the original repository
-and to [GiorgiKavtaradze-prog](https://github.com/GiorgiKavtaradze-prog) is
-genuinely appreciated. The MIT license does not require it — but the author
-values it. ⭐
+> The following operational notices clarify the technical and legal scope of the repository. They do **not** alter or restrict the core MIT License terms.
+
+- **Educational Reference Implementation:** Vetra is engineered as a reference architecture showcasing multi-tenant integration of Next.js App Router, Sanity Context MCP, Clerk Authentication, and Clerk Billing. Prior to deploying in a high-stakes production environment, thoroughly audit organization scoping in [`lib/tenant.ts`](lib/tenant.ts) and MCP tools in [`lib/mcp.ts`](lib/mcp.ts).
+- **Synthetic & Mock Datasets:** All agencies, candidates, client companies, CV attachments, interview debriefs, and compensation figures included in the default Sanity seed files are strictly synthetic demonstration data. Any resemblance to actual persons, living or deceased, or real commercial entities is purely coincidental.
+- **Third-Party Trademarks:** Sanity.io, Clerk, Anthropic, Claude, Vercel, Next.js, React, Tailwind CSS, pnpm, and associated logos are registered trademarks of their respective copyright holders. References herein serve solely to describe technical stack components and do not imply official affiliation, sponsorship, or endorsement.
+- **Secrets & Security:** Never check API keys, Clerk secret keys (`CLERK_SECRET_KEY`), Sanity write tokens (`SANITY_API_WRITE_TOKEN`), or Anthropic keys (`ANTHROPIC_API_KEY`) into source control. Always copy [`.env.example`](.env.example) to `.env.local` for local execution.
+- **Sandbox Payments:** The included billing flows utilize Clerk Billing in sandbox / development mode. No real monetary transactions or credit card processing occur within the demonstration environment.
 
 ---
 
-**MIT © 2026 GiorgiKavtaradze**
+## 4. Attribution & Community Guidelines
 
-<sub>Part of the <a href="./README.md">Vetra</a> project · Last updated: August 2026</sub>
+If you use, fork, or build upon Vetra for open-source projects, articles, or presentations, attribution back to the project repository and to [GiorgiKavtaradze-prog](https://github.com/GiorgiKavtaradze-prog) is greatly appreciated.
+
+---
+
+**MIT © 2026 GiorgiKavtaradze** · _Part of the [Vetra](README.md) Ecosystem_

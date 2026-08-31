@@ -1,21 +1,22 @@
 ---
 description: "Astro patterns with Clerk — middleware, SSR pages, island components, API routes, static vs SSR rendering. Triggers on: astro clerk, clerk astro middleware, astro protected page, clerk island component, astro API route auth, clerk astro SSR."
 license: "MIT"
-metadata: {"author":"clerk","version":"1.0.0"}
+metadata: { "author": "clerk", "version": "1.0.0" }
 ---
+
 # Astro Patterns
 
 SDK: `@clerk/astro` v3+. Requires Astro 4.15+.
 
 ## What Do You Need?
 
-| Task | Reference |
-|------|-----------|
-| Configure middleware | references/middleware.md |
-| Protect SSR pages | references/ssr-pages.md |
+| Task                           | Reference                       |
+| ------------------------------ | ------------------------------- |
+| Configure middleware           | references/middleware.md        |
+| Protect SSR pages              | references/ssr-pages.md         |
 | Use Clerk in island components | references/island-components.md |
-| Auth in API routes | references/api-routes.md |
-| Use Clerk with React in Astro | references/astro-react.md |
+| Auth in API routes             | references/api-routes.md        |
+| Use Clerk with React in Astro  | references/astro-react.md       |
 
 ## Mental Model
 
@@ -36,28 +37,28 @@ Request → clerkMiddleware() → SSR page → Astro.locals.auth()
 ### astro.config.mjs
 
 ```ts
-import { defineConfig } from 'astro/config'
-import clerk from '@clerk/astro'
+import { defineConfig } from "astro/config";
+import clerk from "@clerk/astro";
 
 export default defineConfig({
   integrations: [clerk()],
-  output: 'server',
-})
+  output: "server",
+});
 ```
 
 ### src/middleware.ts
 
 ```ts
-import { clerkMiddleware, createRouteMatcher } from '@clerk/astro/server'
+import { clerkMiddleware, createRouteMatcher } from "@clerk/astro/server";
 
-const isProtectedRoute = createRouteMatcher(['/dashboard(.*)'])
+const isProtectedRoute = createRouteMatcher(["/dashboard(.*)"]);
 
 export const onRequest = clerkMiddleware((auth, context, next) => {
   if (isProtectedRoute(context.request) && !auth().userId) {
-    return auth().redirectToSignIn()
+    return auth().redirectToSignIn();
   }
-  return next()
-})
+  return next();
+});
 ```
 
 ## SSR Page Auth
@@ -73,20 +74,20 @@ if (!userId) return Astro.redirect('/sign-in')
 
 ## Common Pitfalls
 
-| Symptom | Cause | Fix |
-|---------|-------|-----|
-| `Astro.locals.auth` is undefined | Missing middleware | Add `clerkMiddleware` to `src/middleware.ts` |
-| Auth works in dev but not production | `output: 'static'` globally | Set `output: 'server'` or `hybrid` for protected pages |
-| Static page has no auth | Prerendered pages skip middleware | Use `export const prerender = false` or move to island |
-| Island not reactive to sign-in | Missing `client:load` directive | Add `client:load` to the island component |
+| Symptom                              | Cause                             | Fix                                                    |
+| ------------------------------------ | --------------------------------- | ------------------------------------------------------ |
+| `Astro.locals.auth` is undefined     | Missing middleware                | Add `clerkMiddleware` to `src/middleware.ts`           |
+| Auth works in dev but not production | `output: 'static'` globally       | Set `output: 'server'` or `hybrid` for protected pages |
+| Static page has no auth              | Prerendered pages skip middleware | Use `export const prerender = false` or move to island |
+| Island not reactive to sign-in       | Missing `client:load` directive   | Add `client:load` to the island component              |
 
 ## Import Map
 
-| What | Import From |
-|------|-------------|
-| `clerkMiddleware`, `createRouteMatcher` | `@clerk/astro/server` |
-| `useAuth`, `useUser`, `UserButton` | `@clerk/astro/react` |
-| Astro components (`<SignIn>`, etc.) | `@clerk/astro/components` |
+| What                                    | Import From               |
+| --------------------------------------- | ------------------------- |
+| `clerkMiddleware`, `createRouteMatcher` | `@clerk/astro/server`     |
+| `useAuth`, `useUser`, `UserButton`      | `@clerk/astro/react`      |
+| Astro components (`<SignIn>`, etc.)     | `@clerk/astro/components` |
 
 ## Env Variables
 
