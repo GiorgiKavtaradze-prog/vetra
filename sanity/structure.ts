@@ -1,8 +1,10 @@
 import type { StructureResolver } from "sanity/structure";
+
 import {
   CONTEXT_SCHEMA_TYPE_NAME,
   CONVERSATION_SCHEMA_TYPE_NAME,
 } from "@sanity/context/studio";
+
 import { icons } from "@sanity/icons";
 
 const API_VERSION = "2026-08-01";

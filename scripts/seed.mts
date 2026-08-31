@@ -76,8 +76,10 @@ type SeedDoc = { _id: string; _type: string; [key: string]: unknown };
 const DAY_MS = 86_400_000;
 const daysAgo = (days: number) =>
   new Date(Date.now() - days * DAY_MS).toISOString();
+
 const sid = (...parts: (string | number)[]) =>
   ["vetra.seed", orgId, ...parts].join(".");
+
 const ref = (_ref: string) => ({ _type: "reference", _ref });
 const pad = (n: number) => String(n).padStart(3, "0");
 const slug = (s: string) =>

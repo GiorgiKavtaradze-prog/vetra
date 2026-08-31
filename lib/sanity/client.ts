@@ -23,3 +23,4 @@ export const writeClient = createClient({
   token: process.env.SANITY_API_WRITE_TOKEN,
   perspective: "published",
 });
+

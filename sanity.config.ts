@@ -19,3 +19,4 @@ export default defineConfig({
   plugins: [structureTool({ structure }), visionTool(), contextPlugin()],
   schema: { types: schemaTypes },
 });
+
