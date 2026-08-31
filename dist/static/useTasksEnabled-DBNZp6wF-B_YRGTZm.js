@@ -1,1 +1,8 @@
-import{r as e}from"./rolldown-runtime-hePW80VL.js";import{zt as t}from"./_singletons-D1KXa_2R.js";import{n}from"./jsx-runtime-DE3RlOCf.js";var r=e(n(),1);function i(){return(0,r.useContext)(t)}export{i as t};
+import { r as e } from "./rolldown-runtime-hePW80VL.js";
+import { zt as t } from "./_singletons-D1KXa_2R.js";
+import { n } from "./jsx-runtime-DE3RlOCf.js";
+var r = e(n(), 1);
+function i() {
+  return (0, r.useContext)(t);
+}
+export { i as t };

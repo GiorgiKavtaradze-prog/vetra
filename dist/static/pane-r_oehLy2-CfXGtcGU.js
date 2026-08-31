@@ -1,1 +1,2 @@
-import{g as e}from"./sanity-DHipsWkL.js";export{e as default};
+import { g as e } from "./sanity-DHipsWkL.js";
+export { e as default };

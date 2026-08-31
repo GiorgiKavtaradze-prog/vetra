@@ -130,12 +130,7 @@
                     "rules": [
                       {
                         "flag": "valid",
-                        "constraint": [
-                          "user",
-                          "assistant",
-                          "system",
-                          "tool"
-                        ]
+                        "constraint": ["user", "assistant", "system", "tool"]
                       },
                       {
                         "flag": "presence",
@@ -336,10 +331,7 @@
                 "flag": "uri",
                 "constraint": {
                   "options": {
-                    "scheme": [
-                      "/^http$/",
-                      "/^https$/"
-                    ],
+                    "scheme": ["/^http$/", "/^https$/"],
                     "allowRelative": false,
                     "relativeOnly": false,
                     "allowCredentials": false
@@ -406,14 +398,7 @@
       },
       {
         "options": {
-          "list": [
-            "junior",
-            "mid",
-            "senior",
-            "staff",
-            "lead",
-            "executive"
-          ]
+          "list": ["junior", "mid", "senior", "staff", "lead", "executive"]
         },
         "name": "seniority",
         "type": "string"
@@ -425,10 +410,7 @@
       },
       {
         "options": {
-          "list": [
-            "open",
-            "closed"
-          ],
+          "list": ["open", "closed"],
           "layout": "radio"
         },
         "initialValue": "open",
@@ -438,10 +420,7 @@
             "rules": [
               {
                 "flag": "valid",
-                "constraint": [
-                  "open",
-                  "closed"
-                ]
+                "constraint": ["open", "closed"]
               },
               {
                 "flag": "presence",
@@ -557,13 +536,7 @@
       },
       {
         "options": {
-          "list": [
-            "referral",
-            "linkedin",
-            "job-board",
-            "outreach",
-            "other"
-          ]
+          "list": ["referral", "linkedin", "job-board", "outreach", "other"]
         },
         "name": "source",
         "type": "string"
@@ -797,11 +770,7 @@
       },
       {
         "options": {
-          "list": [
-            "pending",
-            "pass",
-            "fail"
-          ],
+          "list": ["pending", "pass", "fail"],
           "layout": "radio"
         },
         "initialValue": "pending",

@@ -1,1 +1,8 @@
-function e(t){return typeof t.title==`string`?t.title:t.type?e(t.type):t.name||t.jsonType}export{e as t};
+function e(t) {
+  return typeof t.title == `string`
+    ? t.title
+    : t.type
+      ? e(t.type)
+      : t.name || t.jsonType;
+}
+export { e as t };
