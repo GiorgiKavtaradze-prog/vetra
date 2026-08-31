@@ -17,3 +17,4 @@ export const STAGE_LABELS: Record<Stage, string> = {
   hired: "Hired",
   rejected: "Rejected",
 };
+

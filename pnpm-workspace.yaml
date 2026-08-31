@@ -8,3 +8,4 @@ allowBuilds:
 onlyBuiltDependencies:
   - esbuild
   - unrs-resolver
+

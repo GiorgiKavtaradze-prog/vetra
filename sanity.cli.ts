@@ -7,3 +7,4 @@ export default defineCliConfig({
   },
   studioHost: "vetra-crm",
 });
+
