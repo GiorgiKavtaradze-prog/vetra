@@ -13,8 +13,6 @@
 [![pnpm](https://img.shields.io/badge/pnpm-11-CB3837?logo=pnpm)](https://pnpm.io/)
 [![License](https://img.shields.io/badge/License-MIT-0064b7.svg)](./LICENSE.md)
 
-<br>
-
 **Authored & engineered by [GiorgiKavtaradze](https://github.com/GiorgiKavtaradze-prog)**
 
 > [!IMPORTANT]
@@ -151,12 +149,6 @@ narrow band.
 - 🚧 Free tier caps at 1 role and 25 candidates, enforced in the Server Actions
   (so the agent hits the same wall the UI does)
 
-| Plan       | Price               | Unlocks                                                        |
-| ---------- | ------------------- | -------------------------------------------------------------- |
-| `free_org` | $0                  | 1 role, 25 candidates, full pipeline + debriefs                |
-| `pro`      | $39/mo ($32 annual) | `ai_agent`, `unlimited_jobs`, `unlimited_candidates` · 5 seats |
-| `scale`    | $99/mo ($82 annual) | Same features · 20 seats                                       |
-
 ---
 
 ## 🧠 The AI Layer — Sanity Context, Explained
@@ -184,15 +176,6 @@ Sanity Context exposes one MCP endpoint per dataset:
 ```
 https://api.sanity.io/v2026-03-03/context/mcp/<projectId>/<dataset>/<slug>
 ```
-
-Any MCP-compatible agent connects with a read token and gets four tools:
-
-| Tool                 | What the agent uses it for                                           |
-| -------------------- | -------------------------------------------------------------------- |
-| `initial_context`    | A compressed overview of your schema: types, fields, document counts |
-| `groq_query`         | Run real GROQ against the live dataset — the workhorse               |
-| `schema_explorer`    | Zoom into one document type's exact fields                           |
-| `array_field_reader` | Read long array / rich-text fields that queries truncate             |
 
 In this repo the connection is ~10 lines in
 [`app/api/agent/route.ts`](app/api/agent/route.ts):

@@ -1,61 +1,83 @@
-# Vetra design language
+# Vetra Design Language Specification
 
-One rule above all: **color means something.**
+> **The Craft ATS Standard** — An authoritative guide to the UI/UX design system, visual hierarchy, color semantics, typography, and density rules for **Vetra**.
 
-- **Ink** (`primary`) — actions and emphasis. Buttons are near-black in light mode, near-white in dark. Never colored buttons for ordinary actions.
-- **The stage ramp** (`stage-applied … stage-rejected`) — pipeline status ONLY. Never decorate with stage colors.
-- **Violet** (`ai`, `ai-foreground`, `ai-soft`) — reserved EXCLUSIVELY for AI: the Ask Vetra button, tool receipts, sourcing matches, AI upsell cards. If a feature isn't AI, it never wears violet. This is how users learn "violet = the intelligent part".
-- Semantic status (destructive, `stage-hired` green for success text) stays separate from all of the above.
+---
 
-## Type
+## 1. Core Axiom: Color Means Something
 
-- Display: `font-display` (Bricolage Grotesque) — page titles, stat numbers, card titles that headline a surface. Always `font-bold tracking-tight`.
-- Body/UI: Instrument Sans (default). Labels/eyebrows: `text-xs font-medium uppercase tracking-wider text-muted-foreground`.
-- Data (ids, GROQ, counts in tables): `font-mono text-xs`, `tabular-nums` for aligned numbers.
+In Vetra, color is never used for generic decoration. Every hue carries precise semantic meaning to ensure visual clarity and lower cognitive load.
 
-## Surfaces
+| Token Group      | Palette Target                                   | Exclusive Purpose                           | Rules & Constraints                                                                                      |
+| :--------------- | :----------------------------------------------- | :------------------------------------------ | :------------------------------------------------------------------------------------------------------- |
+| **Ink**          | `primary` / `primary-foreground`                 | Actions, key buttons, primary text emphasis | Near-black in light mode, near-white in dark mode. Standard actions never wear saturated colors.         |
+| **Violet (AI)**  | `bg-ai`, `text-ai`, `bg-ai-soft`, `border-ai/30` | Reserved **EXCLUSIVELY** for AI features    | Used ONLY for the _Ask Vetra_ floating dock, tool receipts, candidate match scores, and AI upsell cards. |
+| **Stage Ramp**   | `stage-applied` … `stage-rejected`               | Candidate pipeline stage status             | Never decorate arbitrary components with stage colors.                                                   |
+| **Status Pills** | Soft same-hue pastel tint                        | Semantic status badges                      | Pastel same-hue background + darker same-hue text (`text-xs font-medium`). NEVER solid saturated badges. |
+| **Achromatic**   | `background`, `card`, `muted`                    | Surfaces, structural containers, cards      | Page background is warm near-white (`#fcfcfc`); cards are pure white (`#ffffff`) with hairline borders.  |
 
-- Page background is the warm near-white `background`; cards are pure white (`card`) with `border` + `shadow-xs`. No heavy shadows, no gradients.
-- Radius: `rounded-lg` for cards/dialogs, `rounded-md` for inputs/buttons/chips. Nothing pill-shaped except tiny status chips.
-- Density: tables are compact (`text-sm`, `py-2.5` cells), generous page padding (`p-6`+). Wide content scrolls in its own container.
+---
 
-## Patterns
+## 2. Typography Architecture
 
-- **Page header**: back link (optional) → `font-display text-2xl font-bold tracking-tight` title + inline status badge → one-line muted description → actions aligned right. Every dashboard page uses this shape.
-- **Forms are pages, not modals.** Entity creation lives at `…/new` routes: max-w-2xl form column, grouped fields with clear labels, helper text under complex fields, sticky-feeling footer with `Cancel` (link back) + primary submit. Big textareas (CV, description) get `min-h-48` and monospace-off. Only _pickers_ and the chat sheet may overlay.
-- **Empty states**: dashed border card, one sentence inviting the action, primary button. Never a bare "No data".
-- **Tables**: header row `text-xs uppercase tracking-wider text-muted-foreground`; row hover `hover:bg-muted/50`; the row's primary cell is a medium-weight link.
-- **AI surfaces**: violet accents — `bg-ai text-ai-foreground` for the Ask Vetra button and primary AI CTAs, `bg-ai-soft` tints for receipts/badges, `border-ai/30` for upsell cards. Tool receipts stay `font-mono text-xs`.
-- **Stat cards**: label (eyebrow style) over `font-display text-3xl font-bold tabular-nums` number. No icons needed.
-- Buttons: `default` (ink) for the page's one primary action, `outline` for secondary, `ghost` for tertiary/inline. Destructive-ish actions (archive, close) are `outline` with plain language — no red unless it truly destroys.
+### A. Font Families & Roles
 
-## Voice
+- **Landing Display Font:** `font-display` (Bricolage Grotesque) — Reserved strictly for marketing landing headlines, major hero statements, and stat numbers. Always `tracking-tight`.
+- **Application Body & UI Font:** Instrument Sans — Used across all dashboard pages, forms, tables, sidebars, and dialogs.
+- **Data & Code Font:** Monospace (`font-mono`) — Reserved for system IDs, GROQ query strings, dates, aligned table counts, and AI tool receipts (`text-xs tabular-nums`).
 
-Sentence case everywhere. Buttons say exactly what happens ("Add company", then a state that says "Added"). Empty states invite ("No companies yet — add your first client."). No emoji, no exclamation marks in UI chrome.
+### B. Type Scale & Hierarchy
 
-## The overhaul (v2)
+- **App Page Titles:** 16–20px (`text-lg` to `text-xl`), `font-semibold`, `tracking-tight` in a compact single-row header.
+- **Table & Card Body:** 13–14px (`text-sm`), `font-normal text-foreground`.
+- **Table Column Headers:** 11–12px (`text-xs`), `font-medium text-muted-foreground uppercase tracking-wider`.
+- **Metadata & Eyebrows:** 11–12px (`text-xs`), `text-muted-foreground` at 60% opacity for low-priority metadata.
 
-- **Two worlds**: the dark ink-violet rail (`#131120`, white text, white/10 actives) carries the brand; the warm light surface carries the work. The landing page hero and closing band live in the dark world with aurora glows + grain.
-- **The AI dock**: "Ask Vetra" is a floating violet pill, fixed bottom-right on every dashboard screen. It is the ONLY floating element. Pages must keep bottom-right clear (`pb-24` on main handles it).
-- **Cards over tables when scanning wins**: jobs are a card grid (title, company, StageMixBar, stale count, app count). Tables remain for dense reference lists (candidates, companies) but rows lead with an InitialsChip and a medium-weight name link.
-- **New primitives**: `components/stage-mix-bar.tsx` (StageMixBar — stacked stage distribution) and `components/initials-chip.tsx` (InitialsChip — deterministic identity avatar). Use them everywhere a pipeline or a person appears in a list.
-- **Page headers get bigger**: `text-3xl` display titles, generous top padding, meta line beneath; detail pages may use a header block with the InitialsChip (lg) beside the title.
-- Section labels may use the landing's `font-mono text-xs tracking-[0.25em] uppercase` eyebrow style for rhythm.
+---
 
-## v4 — research-committed rules (do not regress)
+## 3. Surface & Depth System
 
-Sources: Linear/Stripe/Vercel/Attio teardowns, Attio+Linear DESIGN.md, Mobbin screens (folk, Homerun, Wrangle, Juicebox), AI-slop kill lists. These override anything above where they conflict.
+- **Dual-World Theme Split:**
+  - **Dark Rail World (`#131120`):** Pinned left sidebar carrying the brand identity, white text, subtle active fill (`bg-white/10`).
+  - **Warm Light Surface World (`#fcfcfc` / `#ffffff`):** Main application workspace optimized for high-density reading and scanning.
+- **Depth Mechanics:**
+  - Depth is defined by **hairline borders (`border-border`)** and **surface steps (`bg-muted/50`)**, NOT heavy drop shadows.
+  - Drop shadows (`shadow-xs` / `shadow-md`) are reserved strictly for floating overlays, popovers, context menus, and modal drawers.
 
-**Landing**: display type = large + LIGHT + tight (semibold max, tracking −0.02/−0.03em) — never extrabold shouting. One accent per viewport. No gradient text, no aurora blobs (ring hairlines + one faint radial only), no italic-serif accent words, no stat banners. Real-product visuals only. Copy: headlines ≤6 words, subheads ≤22 words, sections ≤40 words.
+---
 
-**App surfaces (dashboard)** — the crafted-ATS spec:
+## 4. UI Primitives & Key Patterns
 
-- NO display font in-app; page titles 16–20px font-semibold tracking-tight in a compact single-row header. No mono uppercase eyebrows in-app; mono is only for numbers/dates/ids at 11–12px muted.
-- Type scale: 13–14px body in tables/lists/cards; column headers 11–12px medium muted; tabular-nums on all aligned numbers.
-- Density: rows 36–44px (py-2 to py-2.5), buttons h-8 (size="sm") in-app, controls radius 4–6px, cards 8px.
-- Depth = hairline borders + surface steps, NOT shadows (shadows only on popovers/modals/drawers).
-- Sidebar: LIGHT surface step (bg-muted/50-ish vs white content), 220–240px, 13px labels, 28–32px items, subtle bg-fill active state; workspace switcher at top, user pinned at bottom; no dark rail, no top strip.
-- Status = soft tinted pill (pastel same-hue bg + darker same-hue text, 12px medium) — never solid saturated badges, never thick colored border strips or gradient rails on cards/heroes (kill-list #10). The StageRail glyph (tiny dot rail) survives as the one compact pipeline indicator.
-- 3-tier text ladder: foreground / muted-foreground / muted-foreground at 60% — metadata visibly quieter.
-- Row hover: 2–4% tint + hover-revealed inline actions; motion 120–200ms ease-out; detail peeks may slide over.
-- Violet stays EXCLUSIVELY the AI accent (dock, receipts, sourcing) — everything else near-achromatic.
+### A. Header & Navigation Structure
+
+- **Single-Row Compact Header:** Back button (if nested) → `font-semibold text-lg` title + status badge → inline metadata line → right-aligned primary actions.
+- **App Sidebar (`components/app-sidebar.tsx`):** Light surface step (`bg-muted/50`), 220–240px width, 13px labels, 28–32px item height, subtle active background fill. Includes Workspace Switcher at top and user profile pinned at bottom.
+
+### B. Form Pages Over Modals (`.../new`)
+
+- Entity creation (Jobs, Candidates, Companies) lives on dedicated `/new` routes rather than heavy modal dialogs.
+- Form layout: `max-w-2xl` focused column, grouped fields, clear labels, helper text beneath complex fields, sticky footer with `Cancel` (link back) and Ink primary submit button.
+- Dialog modals are reserved strictly for quick pickers and AI chat drawer overlays.
+
+### C. Signature Design Primitives
+
+- **`StageMixBar` (`components/stage-mix-bar.tsx`):** Stacked visual distribution bar rendering candidate pipeline proportions across pipeline stages.
+- **`InitialsChip` (`components/initials-chip.tsx`):** Deterministic identity chip rendering candidate/company initials with background tints.
+
+### D. AI Copilot Dock & Receipts
+
+- **Ask Vetra Dock:** Floating violet pill fixed at bottom-right of every dashboard screen. This is the **ONLY** floating element permitted in the application layout. Main layout container maintains `pb-24` padding to prevent dock overlapping.
+- **AI Tool Receipts:** Rendered with `bg-ai-soft`, `border-ai/30`, and monospace text (`font-mono text-xs`).
+
+---
+
+## 6. v4 Research-Committed Anti-Pattern Kill-List
+
+The following anti-patterns are explicitly prohibited across all app surfaces:
+
+1. ❌ **No Display Font In-App:** Do NOT use Bricolage Grotesque or display typography inside dashboard pages. Keep display type exclusively for marketing landing heroes.
+2. ❌ **No Non-AI Violet:** Do NOT use violet (`#8b5cf6`, `#7c3aed`) for non-AI buttons, badges, links, or borders. Violet means AI.
+3. ❌ **No Gradient Text:** Never use `bg-gradient-to-r text-transparent bg-clip-text` on dashboard UI surfaces.
+4. ❌ **No Solid Rainbow Badges:** Status badges must be soft pastel tints (`pastel bg` + `dark text`), never solid saturated colors.
+5. ❌ **No Heavy Drop Shadows:** Do not apply heavy elevation shadows to static cards or table rows; use hairline borders (`border-border`).
+6. ❌ **No Red Alarmism:** Destructive actions (archive, close job) use `outline` style with plain text. Solid red buttons are restricted to irreversible data destruction.
