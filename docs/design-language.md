@@ -71,6 +71,240 @@ In Vetra, color is never used for generic decoration. Every hue carries precise 
 
 ---
 
+## 5. Animation & Motion Guidelines
+
+Motion in Vetra serves a purpose: it provides feedback, guides attention, and delights without distracting. All animations must feel intentional and refined.
+
+### A. Motion Principles
+
+| Principle      | Description                                       | Implementation                                                            |
+| :------------- | :------------------------------------------------ | :------------------------------------------------------------------------ |
+| **Purposeful** | Every animation must serve a functional purpose   | Feedback, transition, or attention guidance                               |
+| **Performant** | Animations must never cause jank or layout shifts | Use `transform` and `opacity` only (GPU-accelerated)                      |
+| **Respectful** | Honor user preferences for reduced motion         | Always wrap in `@media (prefers-reduced-motion: reduce)`                  |
+| **Subtle**     | Animations should enhance, not dominate           | Keep durations short (150-300ms for UI, up to 500ms for page transitions) |
+
+### B. Animation Timing Scale
+
+```
+micro-interaction  150ms   →  Button hovers, focus rings, toggles
+ui-transition      200ms   →  Dropdowns, tooltips, popovers
+page-transition    300ms   →  Route changes, sheet drawers
+attention-drawing  500ms   →  Success states, celebrations, onboarding
+```
+
+### C. Approved Animation Patterns
+
+```css
+/* Hover lift — subtle scale on interactive elements */
+.hover-lift {
+  transition: transform 200ms ease-out;
+}
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+/* Fade in — for content appearing */
+.fade-in {
+  animation: fadeIn 300ms ease-out;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Slide up — for drawers, sheets, modals */
+.slide-up {
+  animation: slideUp 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+```
+
+### D. Micro-Interaction Components
+
+The following components in `components/ui/` provide ready-made animations:
+
+| Component                | Effect                           | Use Case                         |
+| :----------------------- | :------------------------------- | :------------------------------- |
+| `Confetti`               | Canvas confetti burst            | Celebrations, success milestones |
+| `CoolMode`               | Particle trail following pointer | Interactive text/buttons         |
+| `Globe`                  | Interactive 3D rotating globe    | Landing page, dashboard hero     |
+| `InteractiveHoverButton` | Expanding dot + sliding label    | CTAs, primary actions            |
+| `Lens`                   | Magnifying glass zoom effect     | Image previews, portfolios       |
+| `NumberTicker`           | Animated count-up/down           | Statistics, KPIs, counters       |
+| `PixelImage`             | Staggered pixel reveal           | Hero images, featured content    |
+
+---
+
+## 6. Accessibility Requirements
+
+### A. WCAG 2.1 AA Compliance
+
+All UI components must meet WCAG 2.1 Level AA standards:
+
+- **Color Contrast:** Minimum 4.5:1 for normal text, 3:1 for large text
+- **Focus Indicators:** Visible focus rings on all interactive elements (`ring-2 ring-primary`)
+- **Keyboard Navigation:** All interactive elements must be reachable and operable via keyboard
+- **Screen Reader Support:** Proper ARIA labels, roles, and live regions for dynamic content
+
+### B. Reduced Motion
+
+Always respect the user's motion preferences:
+
+```typescript
+"use client";
+
+import { motion } from "motion/react";
+
+export function AnimatedCard({ children }: { children: React.ReactNode }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+```
+
+### C. Focus Management
+
+- **Focus Trap:** Modals and drawers must trap focus within their container
+- **Focus Restoration:** When closing modals, return focus to the triggering element
+- **Skip Links:** Provide skip-to-content links for keyboard users
+
+---
+
+## 7. Responsive Design Rules
+
+### A. Breakpoint System
+
+| Breakpoint | Width  | Target Devices |
+| :--------- | :----- | :------------- |
+| `sm`       | 640px  | Large phones   |
+| `md`       | 768px  | Tablets        |
+| `lg`       | 1024px | Laptops        |
+| `xl`       | 1280px | Desktops       |
+| `2xl`      | 1536px | Large monitors |
+
+### B. Touch Targets
+
+- Minimum touch target size: 44x44px on mobile
+- Adequate spacing between interactive elements (minimum 8px)
+- Swipe gestures for mobile tables and carousels
+- Swipe gestures for mobile tables and carousels
+
+---
+
+## 8. Component Catalog
+
+### A. Layout Components
+
+| Component         | Location      | Purpose                          |
+| :---------------- | :------------ | :------------------------------- |
+| `app-sidebar.tsx` | `components/` | Main navigation sidebar          |
+| `page-header.tsx` | `components/` | Compact page header with actions |
+
+### B. Data Display Components
+
+| Component              | Location                 | Purpose                        |
+| :--------------------- | :----------------------- | :----------------------------- |
+| `job-card.tsx`         | `components/jobs/`       | Job posting preview card       |
+| `candidate-drawer.tsx` | `components/candidates/` | Candidate profile slide-over   |
+| `stage-mix-bar.tsx`    | `components/`            | Pipeline stage distribution    |
+| `initials-chip.tsx`    | `components/`            | Deterministic identity avatar  |
+| `kanban-board.tsx`     | `components/jobs/`       | Drag-and-drop Kanban board     |
+| `gantt-timeline.tsx`   | `components/jobs/`       | Project timeline visualization |
+
+### C. AI Components
+
+| Component                 | Location              | Purpose                          |
+| :------------------------ | :-------------------- | :------------------------------- |
+| `agent-sheet.tsx`         | `components/agent/`   | AI chat slide-over panel         |
+| `floating-dock.tsx`       | `components/agent/`   | Ask Vetra floating action button |
+| `tool-receipt.tsx`        | `components/agent/`   | AI tool execution result card    |
+| `plan-upgrade-banner.tsx` | `components/billing/` | Feature upgrade prompt           |
+
+### D. Visual Effect Components
+
+| Component                      | Location         | Purpose                      |
+| :----------------------------- | :--------------- | :--------------------------- |
+| `confetti.tsx`                 | `components/ui/` | Celebration confetti effect  |
+| `cool-mode.tsx`                | `components/ui/` | Pointer-following particles  |
+| `globe.tsx`                    | `components/ui/` | Interactive 3D globe         |
+| `interactive-hover-button.tsx` | `components/ui/` | Animated CTA button          |
+| `lens.tsx`                     | `components/ui/` | Magnifying glass effect      |
+| `number-ticker.tsx`            | `components/ui/` | Animated number counter      |
+| `pixel-image.tsx`              | `components/ui/` | Staggered pixel image reveal |
+
+---
+
+## 9. Design Token Reference
+
+### A. Color Tokens
+
+```css
+/* Primary actions */
+--primary: #1a1a1a; /* Ink — near-black in light mode */
+--primary-foreground: #ffffff; /* White text on primary */
+
+/* Surfaces */
+--background: #fcfcfc; /* Warm near-white page background */
+--card: #ffffff; /* Pure white card surface */
+--muted: #f5f5f5; /* Subtle surface step */
+
+/* Semantic */
+--border: #e5e5e5; /* Hairline borders */
+--destructive: #ef4444; /* Error/danger actions */
+
+/* AI Accent */
+--ai: #8b5cf6; /* Violet — AI features only */
+--ai-soft: #ede9fe; /* Soft violet background */
+```
+
+### B. Spacing Scale
+
+```
+4px   (0.25rem)  →  xs  — Tight gaps, icon padding
+8px   (0.5rem)   →  sm  — Inline spacing, small gaps
+16px  (1rem)     →  md  — Standard spacing, card padding
+24px  (1.5rem)   →  lg  → Section spacing, card margins
+32px  (2rem)     →  xl  → Large section spacing
+48px  (3rem)     →  2xl → Page section separation
+```
+
+### C. Border Radius
+
+```
+2px   (0.125rem) →  subtle — Input fields, small elements
+6px   (0.375rem) →  sm     — Buttons, cards, badges
+8px   (0.5rem)   →  md     — Modals, drawers, large cards
+12px  (0.75rem)  →  lg     — Hero cards, feature sections
+16px  (1rem)     →  xl     — Very large rounded elements
+9999px           →  full   — Pills, avatars, buttons
+```
+
+---
+
+<div align="center">
+
+**Vetra Design Language** · _Crafting pixel-perfect recruitment experiences_
+
+</div>
+
 ## 6. v4 Research-Committed Anti-Pattern Kill-List
 
 The following anti-patterns are explicitly prohibited across all app surfaces:
