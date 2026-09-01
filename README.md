@@ -1,5 +1,7 @@
 # ◆ V E T R A ◆
 
+![image](docs/assets/thumbnail.png)
+
 ### A multi-tenant CRM for recruitment agencies — with an AI copilot that queries your real data, inside a tenant boundary tight enough to sell.
 
 [![Next.js 16](https://img.shields.io/badge/Next.js-16.3-black?logo=next.js)](https://nextjs.org/)
