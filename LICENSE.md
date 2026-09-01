@@ -66,6 +66,61 @@ SOFTWARE.
 
 If you use, fork, or build upon Vetra for open-source projects, articles, or presentations, attribution back to the project repository and to [GiorgiKavtaradze-prog](https://github.com/GiorgiKavtaradze-prog) is greatly appreciated.
 
+### How to Attribute
+
+When using Vetra as a reference or foundation, please include the following attribution:
+
+```
+This project is based on Vetra (https://github.com/GiorgiKavtaradze-prog/vetra),
+licensed under the MIT License. Created by GiorgiKavtaradze-prog.
+```
+
+---
+
+## 5. Third-Party Licenses
+
+Vetra builds upon the following open-source projects, each with their own licenses:
+
+| Project                                  | License        | Purpose                  |
+| :--------------------------------------- | :------------- | :----------------------- |
+| [Next.js](https://nextjs.org/)           | MIT            | React framework          |
+| [React](https://react.dev/)              | MIT            | UI library               |
+| [Sanity](https://www.sanity.io/)         | MIT/Commercial | Headless CMS             |
+| [Clerk](https://clerk.com/)              | Commercial     | Authentication & Billing |
+| [Tailwind CSS](https://tailwindcss.com/) | MIT            | Utility-first CSS        |
+| [Vercel AI SDK](https://sdk.vercel.ai/)  | MIT            | AI model integration     |
+| [Radix UI](https://www.radix-ui.com/)    | MIT            | Accessible primitives    |
+| [Lucide](https://lucide.dev/)            | ISC            | Icon library             |
+| [Motion](https://motion.dev/)            | MIT            | Animation library        |
+
+All trademarks, service marks, and trade names referenced herein remain the property of their respective owners.
+
+---
+
+## 6. Contributing Guidelines
+
+Contributions to Vetra are welcome! By submitting a pull request, you agree that:
+
+1. Your contributions will be licensed under the same MIT License
+2. You have the right to submit the code under these terms
+3. Your contributions are original or properly licensed from the original source
+
+### How to Contribute
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feat/amazing-feature`)
+3. Commit your changes following [Conventional Commits](https://www.conventionalcommits.org/)
+4. Push to the branch (`git push origin feat/amazing-feature`)
+5. Open a Pull Request with a clear description of changes
+
+---
+
+## 7. Contact & Support
+
+- **GitHub Issues:** [github.com/GiorgiKavtaradze-prog/vetra/issues](https://github.com/GiorgiKavtaradze-prog/vetra/issues)
+- **Author:** [GiorgiKavtaradze-prog](https://github.com/GiorgiKavtaradze-prog)
+- **Repository:** [github.com/GiorgiKavtaradze-prog/vetra](https://github.com/GiorgiKavtaradze-prog/vetra)
+
 ---
 
 **MIT © 2026 GiorgiKavtaradze** · _Part of the [Vetra](README.md) Ecosystem_
