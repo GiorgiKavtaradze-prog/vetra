@@ -47,6 +47,9 @@ importers:
       '@sanity/vision':
         specifier: ^6.11.0
         version: 6.11.0(@babel/runtime@7.29.7)(@codemirror/lint@6.9.7)(@codemirror/theme-one-dark@6.1.3)(codemirror@6.0.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(sanity@6.11.0(3a9bb1397330c3262404279aed3f9122))(styled-components@6.5.3(react-dom@19.2.8(react@19.2.8))(react-native@0.87.1(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.2.18)(bufferutil@4.1.0)(react@19.2.8)(supports-color@8.1.1)(utf-8-validate@6.0.6))(react@19.2.8))
+      '@tabler/icons-react':
+        specifier: ^3.46.0
+        version: 3.46.0(react@19.2.8)
       '@types/canvas-confetti':
         specifier: ^1.9.0
         version: 1.9.0
@@ -89,6 +92,9 @@ importers:
       react-dom:
         specifier: 19.2.8
         version: 19.2.8(react@19.2.8)
+      react-element-to-jsx-string:
+        specifier: ^17.0.1
+        version: 17.0.1(react-dom@19.2.8(react@19.2.8))(react-is@19.2.8)(react@19.2.8)
       react-icons:
         specifier: ^5.7.0
         version: 5.7.0(react@19.2.8)
@@ -110,6 +116,9 @@ importers:
       shadcn:
         specifier: ^4.19.0
         version: 4.19.0(babel-plugin-macros@3.1.0)(supports-color@8.1.1)(typescript@5.9.3)
+      sonner:
+        specifier: ^2.0.8
+        version: 2.0.8(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       styled-components:
         specifier: ^6.5.3
         version: 6.5.3(react-dom@19.2.8(react@19.2.8))(react-native@0.87.1(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.2.18)(bufferutil@4.1.0)(react@19.2.8)(supports-color@8.1.1)(utf-8-validate@6.0.6))(react@19.2.8)
@@ -861,6 +870,9 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
+
+  '@base2/pretty-print-object@1.0.2':
+    resolution: {integrity: sha512-rBha0UDfV7EmBRjWrGG7Cpwxg8WomPlo0q+R2so47ZFf9wy4YKJzLuHcVa0UGFjdcLZj/4F/1FNC46GIQhe7sA==}
 
   '@bramus/specificity@2.4.2':
     resolution: {integrity: sha512-ctxtJ/eA+t+6q2++vj5j7FYX3nRu311q1wfYH3xjlLOsczhlhxAg2FWNUXhpGvAw3BWo1xBcvOV6/YLc2r5FJw==}
@@ -2894,6 +2906,14 @@ packages:
 
   '@swc/helpers@0.5.23':
     resolution: {integrity: sha512-5lSsMOTXURePglDfvuAQUqkGek9Hg2kksOYay2m0+XR++b2NWYL/4sWyuvVBIs8oKnJaxkdi9whaL/sqN13afw==}
+
+  '@tabler/icons-react@3.46.0':
+    resolution: {integrity: sha512-CCm7xJWhDT2PH4ZIFkP6AgYKtVhq0gpYkjUN+GVh1AzmIQaa77OW0bQPBPQiTE0PsXMR9oSxFqA3qBglzPyrVQ==}
+    peerDependencies:
+      react: '>= 16'
+
+  '@tabler/icons@3.46.0':
+    resolution: {integrity: sha512-f2RYFl3fzPwj5WO82x6en0dmkjefxEfOm16D1ByM6cj/McNiwOkL4VaPUoP9VVIrXAD9WnTSVFr70px703b//A==}
 
   '@tailwindcss/node@4.3.3':
     resolution: {integrity: sha512-/T8IKEsf9VTU6tLjgC7+sv2mOPtQxzE2jMw7u4Tt40Tx+QSZxpzh95/H6cMKoja9XuW7iMdLJYBB0o9G1CaAgg==}
@@ -5128,6 +5148,10 @@ packages:
     resolution: {integrity: sha512-h5PpgXkWitc38BBMYawTYMWJHFZJVnBquFE57xFpjB8pJFiF6gZ+bU+WyI/yqXiFR5mdLsgYNaPe8uao6Uv9Og==}
     engines: {node: '>=0.10.0'}
 
+  is-plain-object@5.0.0:
+    resolution: {integrity: sha512-VRSzKkbMm5jMDoKLbltAkFQ5Qr7VDiTFGXxYFXXowVj387GeGNOCsOH6Msy00SGZ3Fp84b1Naa1psqgcCIEP5Q==}
+    engines: {node: '>=0.10.0'}
+
   is-potential-custom-element-name@1.0.1:
     resolution: {integrity: sha512-bCYeRA2rVibKZd+s2625gGnGF/t7DSqDs4dP7CrLA1m7jKWz6pps0LpYLJN8Q64HtmPKJ1hrN3nzPNKFEKOUiQ==}
 
@@ -6443,6 +6467,13 @@ packages:
     peerDependencies:
       react: ^19.2.8
 
+  react-element-to-jsx-string@17.0.1:
+    resolution: {integrity: sha512-GMX16Yo+nuqDq4GlrHGaK/coQKEuiXaKEg8tCfKnOC34F2LiUYE6JeQKyirh0YgjhTXUxxONcj1gZa86OW1R6A==}
+    peerDependencies:
+      react: ^19.0.0
+      react-dom: ^19.0.0
+      react-is: ^19.0.0
+
   react-error-boundary@6.1.3:
     resolution: {integrity: sha512-GnSKpCohFi2nQmJCWwP8O8wub7zexlePvpsejvQr35vS5RTouS1+utTNOmyc540yw5vyOXnSL1rBWsCQDmkyUA==}
     peerDependencies:
@@ -6892,6 +6923,16 @@ packages:
   socks@2.8.9:
     resolution: {integrity: sha512-LJhUYUvItdQ0LkJTmPeaEObWXAqFyfmP85x0tch/ez9cahmhlBBLbIqDFnvBnUJGagb0JbIQrkBs1wJ+yRYpEw==}
     engines: {node: '>= 10.0.0', npm: '>= 3.0.0'}
+
+  sonner@2.0.8:
+    resolution: {integrity: sha512-UM/ByIoFra8yzV75n1o0Puu0bw5U/9UNnDacrJNspekBewIfsQ3D6ez1nvlWpt7aTsO6rujQtifBpycwIivqlg==}
+    peerDependencies:
+      '@types/react': ^18.0.0 || ^19.0.0
+      react: ^18.0.0 || ^19.0.0 || ^19.0.0-rc
+      react-dom: ^18.0.0 || ^19.0.0 || ^19.0.0-rc
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
 
   source-map-js@1.2.1:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
@@ -8666,6 +8707,8 @@ snapshots:
       use-sync-external-store: 1.6.0(react@19.2.8)
     optionalDependencies:
       '@types/react': 19.2.18
+
+  '@base2/pretty-print-object@1.0.2': {}
 
   '@bramus/specificity@2.4.2':
     dependencies:
@@ -11060,6 +11103,13 @@ snapshots:
   '@swc/helpers@0.5.23':
     dependencies:
       tslib: 2.8.1
+
+  '@tabler/icons-react@3.46.0(react@19.2.8)':
+    dependencies:
+      '@tabler/icons': 3.46.0
+      react: 19.2.8
+
+  '@tabler/icons@3.46.0': {}
 
   '@tailwindcss/node@4.3.3':
     dependencies:
@@ -13457,6 +13507,8 @@ snapshots:
     dependencies:
       isobject: 3.0.1
 
+  is-plain-object@5.0.0: {}
+
   is-potential-custom-element-name@1.0.1: {}
 
   is-promise@4.0.0: {}
@@ -15070,6 +15122,14 @@ snapshots:
       react: 19.2.8
       scheduler: 0.27.0
 
+  react-element-to-jsx-string@17.0.1(react-dom@19.2.8(react@19.2.8))(react-is@19.2.8)(react@19.2.8):
+    dependencies:
+      '@base2/pretty-print-object': 1.0.2
+      is-plain-object: 5.0.0
+      react: 19.2.8
+      react-dom: 19.2.8(react@19.2.8)
+      react-is: 19.2.8
+
   react-error-boundary@6.1.3(@types/react@19.2.18)(react@19.2.8):
     dependencies:
       react: 19.2.8
@@ -15859,6 +15919,13 @@ snapshots:
     dependencies:
       ip-address: 10.5.0
       smart-buffer: 4.2.0
+
+  sonner@2.0.8(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8):
+    dependencies:
+      react: 19.2.8
+      react-dom: 19.2.8(react@19.2.8)
+    optionalDependencies:
+      '@types/react': 19.2.18
 
   source-map-js@1.2.1: {}
 
